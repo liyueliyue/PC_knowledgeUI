@@ -22,7 +22,7 @@ if __name__ == "__main__":
     driver.add_cookie(cookie_dict=cookies1)
     driver.refresh()
     sleep(1)
-    insert_img(driver,'topicTest.jpg')
+    insert_img(driver,'topicTest2.jpg')
     driver.get(r'https://m.qlchat.com/pc/knowledge-mall/index')
     driver.maximize_window()
     sleep(1)

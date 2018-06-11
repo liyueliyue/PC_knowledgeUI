@@ -49,6 +49,6 @@ class Page():
     # 获取警告框text
     def switch_alert(self):
         return self.driver.switch_to_alert().text
-    # 多表单切换
+    # 多表单切换（src指定位后元素）
     def switch_frame(self,src):
         return self.driver.switch_to.frame(src)

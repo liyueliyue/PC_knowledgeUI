@@ -36,3 +36,9 @@ class Index(Page):
         self.wait_element(*self.thirdTab_loc).click()
         self.wait_element(*self.norelay_loc).click()
 
+    # 获取二维码的文案text，用于断言
+    def get_codeText(self):
+        self.switch_frame(self.wait_element(*self.iframe_loc))
+        codeText = self.wait_element(*self.codeText_loc).text
+        return codeText
+
