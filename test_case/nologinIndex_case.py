@@ -15,8 +15,8 @@ class indexTest(unittest.TestCase):
     def test_click_relayManage(self):
         '''未登录点击转载管理'''
         self.index.click_relayManage()
-        # insert_img(self.driver,"未登录点击转载管理按钮.jpg")
-        # sleep(1)
+        insert_img(self.driver,"未登录点击转载管理按钮.jpg")
+        sleep(1)
         # 断言
         self.assertEqual(self.index.get_codeText(),"微信登录")
 if __name__ == "__main__":
