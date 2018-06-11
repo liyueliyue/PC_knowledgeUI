@@ -27,7 +27,13 @@ if __name__ == "__main__":
     # insert_img(driver,'topicTest2.jpg')
     driver.get(r'https://m.qlchat.com/pc/knowledge-mall/index')
     driver.maximize_window()
-    driver.find_element_by_xpath('//*[@id="top"]/div[1]/div/div[2]/div[1]/a[2]').click()
-    insert_img(driver,'loginCode.jpg')
+    # driver.find_element_by_xpath('//*[@id="top"]/div[1]/div/div[2]/div[1]/a[2]').click()
+    # insert_img(driver,'loginCode.jpg')
+    l = [i.text for i in driver.find_elements_by_xpath('//*[@id="top"]/div[7]')]
+    t = "精品"
+    z = "专属"
+    t_ = t in l[0] or z in l[0]
+    print(t_)
+
     sleep(1)
     driver.quit()

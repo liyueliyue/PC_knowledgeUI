@@ -14,6 +14,7 @@ class Index(Page):
     thirdTab_loc = (By.XPATH,'//*[@id="top"]/div[3]/div[1]/ul/li[3]')              # 个人提升tab
     iframe_loc = (By.XPATH,'//*[@id="modal-content"]/span[8]/div/div[1]/div/div/div/iframe')  # 登录二维码iframe
     codeText_loc = (By.XPATH,'/html/body/div/div/div[1]')                            # 微信登录文本
+    nav_loc = (By.XPATH,'//*[@id="top"]/div[7]')                                     #右侧导航栏
 
     # 未登录点击转载管理
     def click_relayManage(self):
@@ -27,7 +28,7 @@ class Index(Page):
     # 点击分销后台
     def click_salesBack(self):
         self.wait_element(*self.salesBack_loc).click()
-    # 点击全部tab的只看转载课按钮
+    # 点击全部tab的只看未转载课按钮
     def click_norelay(self):
         self.wait_element(*self.allTab_loc).click()
         self.wait_element(*self.norelay_loc).click()
@@ -41,4 +42,10 @@ class Index(Page):
         self.switch_frame(self.wait_element(*self.iframe_loc))
         codeText = self.wait_element(*self.codeText_loc).text
         return codeText
-
+    # 是否显示“精品推荐”或“专属推荐模块”
+    def boolean(self):
+        # 生成一个list首先考虑列表生成式
+        l = [i.text for i in self.wait_elements(*self.nav_loc)]
+        j = "精品推荐"
+        z = "专属推荐"
+        return j in l[0] or z in l[0]
