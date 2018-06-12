@@ -16,6 +16,11 @@ class Index(Page):
     codeText_loc = (By.XPATH,'/html/body/div/div/div[1]')                            # 微信登录文本
     nav_loc = (By.XPATH,'//*[@id="top"]/div[7]')                                     #右侧导航栏
 
+    searchForm_loc = (By.XPATH,'//*[@id="top"]/div[1]/div/div[1]/div[3]/input')   # 搜索框
+    click_searchButton_loc = (By.XPATH,'//*[@id="top"]/div[1]/div/div[1]/div[3]/i') # 点击搜索按钮
+    get_searchText_loc = (By.XPATH,'//*[@id="main-content"]/div/div[2]')            # 搜索结果不存在文案
+    get_searchResult_loc = (By.XPATH,'//*[@id="top"]/div[4]/div[1]/div/section/div[1]/h1') # 搜索结果中第一个课程标题
+
     # 未登录点击转载管理
     def click_relayManage(self):
         self.wait_element(*self.relayManage_loc).click()
@@ -49,3 +54,18 @@ class Index(Page):
         j = "精品推荐"
         z = "专属推荐"
         return j in l[0] or z in l[0]
+    # 搜索框
+    def sendTextTosearchForm(self,text):
+        self.wait_element(*self.searchForm_loc).clear()
+        self.wait_element(*self.searchForm_loc).send_keys(text)
+        self.wait_element(*self.click_searchButton_loc).click()
+    # 获取搜索内容不存在的text
+    def get_searchText(self):
+        return self.wait_element(*self.get_searchText_loc).text
+    # 判断搜索字段是否存在结果中
+    def get_searchResult(self):
+        text = self.wait_element(*self.get_searchResult_loc).text
+        if '优惠' in text:
+            return True
+        else:
+            return False
