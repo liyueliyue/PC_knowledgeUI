@@ -32,8 +32,7 @@ class indexTest(unittest.TestCase):
         insert_img(self.driver,'3已登录点击转载管理按钮.jpg')
         sleep(1)
         # 断言
-        self.assertEqual(self.index.get_currentUrl(),'https://m.qlchat.com/pc/knowledge-mall'
-                                                     '/manage?selectedLiveId=310000108181722')
+        self.assertIn('https://m.qlchat.com/pc/knowledge-mall/manage',self.index.get_currentUrl())
 
 if __name__ == "__main__":
     unittest.main()

@@ -6,16 +6,14 @@ def browser():
     return driver
 if __name__ == "__main__":
     driver = browser()
-    driver.get(r'https://m.qlchat.com/wechat/page/topic-intro?topicId=2000001368645697')
-    driver.implicitly_wait(5)
-    cookies = {'name':'userId','value':'270000127243445'}
-    cookies1 = {'name':'QLZB_SESSIONID','value':'4B6250526A505A5A2F3532506F6446537552357167336276646C79537151536631673449674E51637832413D'}
-
+    driver.get(r'https://m.qlchat.com/pc/knowledge-mall/index')
+    # 右右小号cookies
+    cookies = {'name': 'userId', 'value': '120000175327591'}
+    cookies1 = {'name': 'QLZB_SESSIONID',
+                'value': '46715072626C6A764D7631686F683641616E54472B2F6A3563657864626C652F6B73426D74544E2B504E413D'}
     driver.add_cookie(cookie_dict=cookies)
     driver.add_cookie(cookie_dict=cookies1)
     driver.refresh()
-    sleep(1)
-    driver.get(r'https://m.qlchat.com/pc/knowledge-mall/index')
     driver.maximize_window()
     sleep(1)
-    driver.quit()
+    driver.close()

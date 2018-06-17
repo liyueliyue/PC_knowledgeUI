@@ -2,6 +2,7 @@ import sys
 sys.path.append('./page_obj')
 from page_obj.base import Page
 from selenium.webdriver.common.by import By
+from time import sleep
 
 class Index(Page):
     """商城首页"""
@@ -23,6 +24,7 @@ class Index(Page):
 
     # 未登录点击转载管理
     def click_relayManage(self):
+        # sleep(1)
         self.wait_element(*self.relayManage_loc).click()
     # 未登录点击我的画像
     def click_myDraw(self):

@@ -1,10 +1,12 @@
 from selenium.webdriver.support.ui import  WebDriverWait
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.by import By
+from time import sleep
 
 class Page():
     """基础类，用于所有页面的继承"""
-    topicUrl = r'https://m.qlchat.com/wechat/page/topic-intro?topicId=2000001368645697'
+    # topicUrl = r'https://m.qlchat.com/wechat/page/topic-intro?topicId=2000001368645697'  # 右右大号
+    # topicUrl = r'https://m.qlchat.com/topic/details?topicId=2000001486161084&&preview=Y' # 右右小号
     pcknowledgeUrl = r'https://m.qlchat.com/pc/knowledge-mall/index'
     selectLiveButton_loc = (By.XPATH,'//*[@id="modal-content"]/span[10]/div/div[3]/div') # 选择直播间按钮
 
@@ -22,16 +24,25 @@ class Page():
     def openNologin(self):
         self._open()
     def _openPc(self):
-        self.driver.get(self.topicUrl)
+        self.driver.get(self.pcknowledgeUrl)
+        '''
+        # 右右大号cookies
         cookies = {'name': 'userId', 'value': '270000127243445'}
         cookies1 = {'name': 'QLZB_SESSIONID',
                     'value': '4B6250526A505A5A2F3532506F6446537552357167336276646C79537151536631673449674E51637832413D'}
+        '''
+        # 右右小号cookies
+        cookies = {'name': 'userId', 'value': '120000175327591'}
+        cookies1 = {'name': 'QLZB_SESSIONID',
+                    'value': '46715072626C6A764D7631686F683641616E54472B2F6A3563657864626C652F6B73426D74544E2B504E413D'}
+
         self.driver.add_cookie(cookie_dict=cookies)
         self.driver.add_cookie(cookie_dict=cookies1)
         self.driver.refresh()
-        self.openNologin()
+        # self.openNologin()
         self.driver.maximize_window()
         self.wait_element(*self.selectLiveButton_loc).click()
+
     # 打开知识通商城（已登录）
     def openLogin(self):
         self._openPc()
