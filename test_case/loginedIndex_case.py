@@ -34,7 +34,7 @@ class indexTest(unittest.TestCase):
         # 断言
         self.assertIn('/pc/knowledge-mall/manage',self.index.get_currentUrl())
         def test_click_myDraw(self):
-        '''已登录点击我的画像按钮'''
+            '''已登录点击我的画像按钮'''
         self.index.click_myDraw()
         insert_img(self.driver,'4已登录点击我的画像.jpg')
         sleep(1)
