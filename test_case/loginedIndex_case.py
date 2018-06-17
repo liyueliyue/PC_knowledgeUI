@@ -32,7 +32,13 @@ class indexTest(unittest.TestCase):
         insert_img(self.driver,'3已登录点击转载管理按钮.jpg')
         sleep(1)
         # 断言
-        self.assertIn('https://m.qlchat.com/pc/knowledge-mall/manage',self.index.get_currentUrl())
+        self.assertIn('/pc/knowledge-mall/manage',self.index.get_currentUrl())
+        def test_click_myDraw(self):
+        '''已登录点击我的画像按钮'''
+        self.index.click_myDraw()
+        insert_img(self.driver,'4已登录点击我的画像.jpg')
+        sleep(1)
+        self.assertIn('/pc/knowledge-mall/user-portrait',self.index.get_currentUrl())
 
 if __name__ == "__main__":
     unittest.main()

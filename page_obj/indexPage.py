@@ -24,10 +24,11 @@ class Index(Page):
 
     # 未登录点击转载管理
     def click_relayManage(self):
-        # sleep(1)
+        sleep(1)  # 处理'转载管理'style="display: inline-block;"
         self.wait_element(*self.relayManage_loc).click()
     # 未登录点击我的画像
     def click_myDraw(self):
+        sleep(1) # 处理'我的画像'style="display: inline-block;"
         self.wait_element(*self.myDraw_loc).click()
     # 点击登录按钮
     def click_login(self):
