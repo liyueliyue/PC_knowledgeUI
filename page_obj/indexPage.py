@@ -3,6 +3,7 @@ sys.path.append('./page_obj')
 from page_obj.base import Page
 from selenium.webdriver.common.by import By
 from time import sleep
+from selenium.webdriver.common.action_chains import ActionChains
 
 class Index(Page):
     """商城首页"""
@@ -21,6 +22,14 @@ class Index(Page):
     click_searchButton_loc = (By.XPATH,'//*[@id="top"]/div[1]/div/div[1]/div[3]/i') # 点击搜索按钮
     get_searchText_loc = (By.XPATH,'//*[@id="main-content"]/div/div[2]')            # 搜索结果不存在文案
     get_searchResult_loc = (By.XPATH,'//*[@id="top"]/div[4]/div[1]/div/section/div[1]/h1') # 搜索结果中第一个课程标题
+
+    headHover_loc = (By.XPATH,'//*[@id="main-content"]/div/div[1]/div/div[2]/div[2]')       # 头像hover
+    switchAcount_loc = (By.XPATH,'/html/body/div[3]/div/div/ul/li[1]/div')                   # 切换账号按钮
+    logout_loc = (By.XPATH,'/html/body/div[3]/div/div/ul/li[2]/div')                         # 退出登录按钮
+    selectLive_loc = (By.XPATH,'//*[@id="modal-content"]/span[4]/div/div[2]/div/div[2]/div[2]/div[2]')  # 选择我管理的第一个直播间
+    selectLiveButton_loc2 = (By.XPATH,'//*[@id="modal-content"]/span[4]/div/div[3]/div') # 切换直播间的确认按钮
+
+
 
     # 未登录点击转载管理
     def click_relayManage(self):
@@ -72,3 +81,14 @@ class Index(Page):
             return True
         else:
             return False
+    # 处理鼠标事件-hover
+    def headHover(self):
+        attribute = self.wait_element(*self.headHover_loc)
+        ActionChains(self.driver).move_to_element(attribute).perform()
+        sleep(1)
+    def switchAcount(self):
+        self.headHover()
+        self.wait_element(*self.switchAcount_loc).click()
+        self.wait_element(*self.selectLive_loc).click()
+        self.wait_element(*self.selectLiveButton_loc2).click()
+
