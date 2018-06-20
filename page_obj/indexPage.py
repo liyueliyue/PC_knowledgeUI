@@ -83,9 +83,12 @@ class Index(Page):
             return False
     # 处理鼠标事件-hover
     def headHover(self):
+        js = "window.scrollTo(500,0);"
+        self.execute_js(js)
         attribute = self.wait_element(*self.headHover_loc)
         ActionChains(self.driver).move_to_element(attribute).perform()
-        sleep(1)
+        sleep(5)
+
     def switchAcount(self):
         self.headHover()
         self.wait_element(*self.switchAcount_loc).click()

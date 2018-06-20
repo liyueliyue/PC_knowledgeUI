@@ -41,6 +41,7 @@ class Page():
         self.driver.refresh()
         # self.openNologin()
         self.driver.maximize_window()
+        # self.driver.set_window_size(1000,600)
         self.wait_element(*self.selectLiveButton_loc).click()
 
     # 打开知识通商城（已登录）

@@ -33,12 +33,18 @@ class indexTest(unittest.TestCase):
         sleep(1)
         # 断言
         self.assertIn('/pc/knowledge-mall/manage',self.index.get_currentUrl())
-        def test_click_myDraw(self):
-            '''已登录点击我的画像按钮'''
+    def test_click_myDraw(self):
+        '''已登录点击我的画像按钮'''
         self.index.click_myDraw()
         insert_img(self.driver,'4已登录点击我的画像.jpg')
         sleep(1)
         self.assertIn('/pc/knowledge-mall/user-portrait',self.index.get_currentUrl())
+    def test_switchAcount(self):
+        '''测试切换直播间'''
+        self.index.switchAcount()
+        insert_img(self.driver,'5切换直播间.jpg')
+        sleep(1)
+        # 断言
 
 if __name__ == "__main__":
     unittest.main()
