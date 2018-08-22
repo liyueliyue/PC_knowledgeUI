@@ -1,4 +1,8 @@
-import unittest
+import unittest, os, sys
+os.chdir('../')
+fpath = os.getcwd()
+print(fpath)
+sys.path.append(fpath)
 from models.function import insert_img
 from models.driver import browser
 from page_obj.indexPage import Index

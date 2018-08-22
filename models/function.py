@@ -1,4 +1,4 @@
-import sys,os
+import sys, os
 sys.path.append(r'./models')
 
 def insert_img(driver,filename):

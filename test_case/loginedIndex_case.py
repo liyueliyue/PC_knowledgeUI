@@ -1,4 +1,26 @@
-import unittest
+import unittest, sys, os
+# os.chdir('../')  # 切换工作目录
+# fpath = os.getcwd()
+# sys.path.append(fpath)  # 加进python 的path
+'''
+先看报错是哪个模块，然后将换个模块的路径添加到sys，注意例如我有这样一个路径报错
+
+/usr/local/bin/python3.6 /Users/louchengwang/PycharmProjects/Sanjieke/src/utils/config.py
+
+报错是
+
+No module named 'src'
+
+那么首先确定去执行的文件中config.py添加src模块的路径
+
+然后rootpath要确定最终应该append的应该是/Users/louchengwang/PycharmProjects/Sanjieke，而不是到src,这里要注意应该是
+'''
+curPath = os.path.abspath(os.path.dirname(__file__))  # 获取当前的工作目录
+print(curPath)
+rootPath = os.path.split(curPath)[0]
+print(rootPath)
+sys.path.append(rootPath)
+print(sys.path)
 from models.function import insert_img
 from models.driver import browser
 from page_obj.indexPage import Index
@@ -15,10 +37,10 @@ class indexTest(unittest.TestCase):
     def test_searchForm_null(self):
         '''输入不存在的课程，点击搜索显示‘没有更多了’'''
         self.index.sendTextTosearchForm(text="jgfkldjasfljas")
-        insert_img(self.driver,"1搜索不存在课程.jpg")
+        insert_img(self.driver, "1搜索不存在课程.jpg")
         sleep(1)
         # 断言
-        self.assertEqual(self.index.get_searchText(),"没有更多了")
+        self.assertEqual(self.index.get_searchText(), "没有更多了")
     def test_searchForm(self):
         '''输入存在的课程，点击搜索显示对应数据'''
         self.index.sendTextTosearchForm(text="优惠")
